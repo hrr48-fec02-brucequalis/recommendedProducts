@@ -48,7 +48,7 @@ export const RecList = styled.ul`
   display: flex;
   flex-direction: horizontal;
   justify-content: left;
-  :hover button {
+  :hover > div > div > a {
     visibility: visible;
     opacity: 1;
     transition: opacity 0s linear;
@@ -114,7 +114,7 @@ export const RecItemAnchor = styled.a`
   text-decoration: none;
 `;
 
-const NavButton = styled.button`
+const NavButton = styled.span`
   height: 40px;
   width: 40px;
   background-color: white;
@@ -123,21 +123,26 @@ const NavButton = styled.button`
   border: 2px solid black;
   z-index: 1;
   border-radius: 50%;
-  margin-top: 90px;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 export const NavButtonRight = styled(NavButton)`
   justify-self: flex-end;
-  margin-left: -40px;
 `;
 
 export const NavButtonLeft = styled(NavButton)`
   justify-self: flex-start;
-  margin-right: -40px;
 `;
+
+// export const NavSpan = styled.span`
+// height: 40px;
+// width: 40px;
+// background-color: white;
+// color: black;
+// font-size: 1.5em;
+// border: 2px solid black;
+// z-index: 1;
+// border-radius: 50%;
+// `;

@@ -1,23 +1,27 @@
 import React from 'react';
 import ListItem from './ListItem.jsx';
-import {RecList, NavButtonRight, NavButtonLeft} from './Styles.jsx';
+import {RecList, NavButtonRight, NavButtonLeft, RecListScrollingLeft, RecListScrollingRight, NavSpan} from './Styles.jsx';
+import Carousel from 'react-bootstrap/Carousel';
 
-const List = ({listItems, handleClick, selectedDot, numVisible, numDots}) => {
-  const minIVisible = selectedDot * numVisible;
-  const maxIVisible = minIVisible + numVisible - 1;
+const List = ({listItems, handleClick, selectedDot, numVisible, numDots, isScrolling, handleSelect}) => {
 
-  const onLeftmostPage = selectedDot === 0;
-  const onRightmostPage = selectedDot === numDots - 1;
+  let dots = [];
+  while (dots.length < numDots) {
+    if (dots.length === selectedDot) {
+      dots.push(1);
+    } else {
+      dots.push(0);
+    }
+  }
 
   return (
-  <RecList>
-    {onLeftmostPage ? '' : <NavButtonLeft onClick={() => handleClick(-1)}>&#5176;</NavButtonLeft>}
-
-      {listItems.map((item, i) =>
-        <ListItem item={item} key={item._id} visible={i >= minIVisible && i <= maxIVisible}/> )}
-
-    {onRightmostPage ? '' : <NavButtonRight onClick={() => handleClick(1)}>&#5171;</NavButtonRight>}
-  </RecList>
+    <Carousel activeIndex={selectedDot} interval={null} onSelect={handleSelect} nextIcon={<NavButtonRight>&#5171;</NavButtonRight>} prevIcon={<NavButtonLeft>&#5176;</NavButtonLeft>}>
+        {dots.map((dot, dotIdx) =>
+          <Carousel.Item key={dotIdx}>
+            {listItems.slice(dotIdx * numVisible, (dotIdx + 1) * numVisible).map(item => <ListItem item={item} key={item._id}/>)}
+          </Carousel.Item>
+        )}
+    </Carousel>
   );
 };
 

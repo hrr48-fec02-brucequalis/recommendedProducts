@@ -8,18 +8,14 @@ const ListItem = ({item, visible}) => {
     // I'm planning to use this to redirect page on click
   };
 
-  if (visible) {
-    return (
-      <RecListItem onClick={(e) => {handleClick(e)}}>
-        <RecItemAnchor href={item.productUrl}>
-          <RecItemImage src={item.imageUrl} ></RecItemImage>
-          <RecItemPrice>${item.price}</RecItemPrice>
-        </RecItemAnchor>
-      </RecListItem>
-    );
-  } else {
-    return <div></div>
-  }
+  return (
+    <RecListItem onClick={(e) => {handleClick(e)}}>
+      <RecItemAnchor href={item.productUrl}>
+        <RecItemImage src={item.imageUrl} ></RecItemImage>
+        <RecItemPrice>${item.price}</RecItemPrice>
+      </RecItemAnchor>
+    </RecListItem>
+  );
 };
 
 export default ListItem;

@@ -11,6 +11,7 @@ const App = (props) => {
   const [numItems, setNumItems] = useState(24);
   const [numVisible, setNumVisible] = useState(7);
   const [numDots, setNumDots] = useState(Math.ceil(numItems / numVisible));
+  const [isScrolling, setIsScrolling] = useState(false);
 
   let dotsArray = [];
   while (dotsArray.length < numDots) {
@@ -20,6 +21,15 @@ const App = (props) => {
       dotsArray.push(0);
     }
   }
+
+  const handleScroll = (change, finalDotNum) => {
+    // consider how list is changing
+    if (change) {
+      setSelectedDot(selectedDot + change);
+    } else {
+      setSelectedDot(finalDotNum);
+    }
+  };
 
 
   useEffect(() => {
@@ -50,11 +60,12 @@ const App = (props) => {
           numVisible={numVisible}
           selectedDot={selectedDot}
           numDots={numDots}
-          handleClick={(d) => setSelectedDot(selectedDot + d)}/>
+          handleSelect={(selectedIndex) => setSelectedDot(selectedIndex)}
+          handleClick={(d) => handleScroll(d)}/>
       </div>
       <CenterTextBox>
         {dotsArray.map((selected, i) =>
-          <Dot selected={selected} key={i} handleClick={() => setSelectedDot(i)}/>
+          <Dot selected={selected} key={i} handleClick={() => handleScroll(null, i)}/>
         )}
       </CenterTextBox>
     </div>
