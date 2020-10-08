@@ -5,13 +5,16 @@ import axios from 'axios';
 import exampleData from '../data/example_data.js';
 import {GlobalStyle, CenterTextBox, ItemsBox} from './Styles.jsx';
 
-const RecommendedProducts = ({totalItems, itemsShown, productId, heading}) => {
+const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
 
   let offset = 0;
   // don't reuse products between 'more to consider' and 'similar items':
   if (heading === 'Similar items') {
     offset = 24;
   }
+
+  // parse information from window pathname
+  let productId = window.location.pathname.slice(1) || 1;
 
   const [selectedDot, setSelectedDot] = useState(0);
   const [numItems, setNumItems] = useState(totalItems || 24);
@@ -29,12 +32,10 @@ const RecommendedProducts = ({totalItems, itemsShown, productId, heading}) => {
   }
 
   useEffect(() => {
-    if (productId) {
       axios.get(`/products/id/${productId}`)
         .then(results => {
           setAllItems(results.data.slice(offset, offset + numItems));
         });
-    }
   }, []);
 
   return (
