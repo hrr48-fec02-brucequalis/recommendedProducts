@@ -22,7 +22,7 @@ const generateRecords = function(numRecords) {
       department: departments[ Math.floor( Math.random() * departments.length ) ],
       price: Number(faker.commerce.price(0, 100)) - Math.ceil(Math.random() * 5) / 100,
       imageUrl: `https://twzkraus-fec-images.s3-us-west-1.amazonaws.com/target-images/${i % 50}.jpg`,
-      productUrl: `http://localhost:3000/products/id/${i % 100}`
+      productUrl: `/${i % 100 + 1}`
     });
   }
   return records;
