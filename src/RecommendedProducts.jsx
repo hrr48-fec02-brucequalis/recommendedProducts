@@ -32,7 +32,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   }
 
   useEffect(() => {
-      axios.get(`/products/id/${productId}`)
+      axios.get(`http://localhost:3000/products/id/${productId}`)
         .then(results => {
           setAllItems(results.data.slice(offset, offset + numItems));
         });
