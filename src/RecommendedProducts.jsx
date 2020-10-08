@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import List from './List.jsx';
 import Dot from './Dot.jsx';
 import axios from 'axios';
-import exampleData from '../data/example_data.js';
 import {GlobalStyle, CenterTextBox, ItemsBox} from './Styles.jsx';
 
 const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
@@ -18,7 +17,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
 
   const [selectedDot, setSelectedDot] = useState(0);
   const [numItems, setNumItems] = useState(totalItems || 24);
-  const [allItems, setAllItems] = useState(exampleData.slice(offset, offset + numItems));
+  const [allItems, setAllItems] = useState([]);
   const [numVisible, setNumVisible] = useState(itemsShown || 7);
   const [numDots, setNumDots] = useState(Math.ceil(numItems / numVisible));
 
@@ -32,10 +31,12 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   }
 
   useEffect(() => {
-      axios.get(`http://localhost:3000/products/id/${productId}`)
+    if (Number.isInteger(productId)) {
+      axios.get(`http://localhost:3003/products/id/${productId}`)
         .then(results => {
           setAllItems(results.data.slice(offset, offset + numItems));
         });
+    }
   }, []);
 
   return (
