@@ -55,6 +55,10 @@ app.get('/products/id/:productId', async (req, res) => {
 
 });
 
+app.get('/:productId', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
+});
+
 const formatName = (string) => {
   return string[0].toUpperCase() + string.split('').slice(1).join('');
 };
