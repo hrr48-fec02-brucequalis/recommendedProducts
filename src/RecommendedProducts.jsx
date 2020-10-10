@@ -18,6 +18,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   /*
   Responsive triggers (FOR RECOMMENDED--SIMILAR SLIGHTLY DIFFERENT):
   Also note: on any window change, selected dot goes back to 0. That makes things a little easier.
+  And: arrows float on window edge if last item is partially obscured
       (looks like similar items follows similar pattern--however, max dots is 3, with 5 items across)
   use innerWidth
   <1209: 5 dots, 6 items each, 24 total still
@@ -49,7 +50,38 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
           setAllItems(results.data.slice(offset, offset + numItems));
         });
     }
+    handleResize();
   }, []);
+
+  const handleResize = () => {
+    let width = window.innerWidth * 4/5; //issue with inner width: adds 1/4 (e.g. 1600-2000, 800-1000, 150-187)
+    let widthTriggers = [null, 1209, 1010, 925, 668];
+    let correspondingVisible = [7, 6, 5, 4, numItems];
+    let targetVisible;
+    if (width < widthTriggers[4]) {
+      console.log('we\'re at the smallest level--work on a scroll bar');
+      targetVisible = correspondingVisible[4];
+    } else if (width < widthTriggers[3]) {
+      targetVisible = correspondingVisible[3];
+    } else if (width < widthTriggers[2]) {
+      targetVisible = correspondingVisible[2];
+    } else if (width < widthTriggers[1]) {
+      targetVisible = correspondingVisible[1];
+    }
+    manageVisibleAndDots(targetVisible || correspondingVisible[0]);
+  };
+
+  const manageVisibleAndDots = (newVis) => {
+    // use numItems
+    // setNumVisible
+    setNumVisible(newVis);
+    // setNumDots: Math.ceil(numItems / numVisible);
+    newVis === numItems ? setNumDots(0) : setNumDots(Math.ceil(numItems / newVis));
+    // set selected dot to 0
+    setSelectedDot(0);
+  };
+
+  window.addEventListener('resize', handleResize);
 
   return (
     <div>
