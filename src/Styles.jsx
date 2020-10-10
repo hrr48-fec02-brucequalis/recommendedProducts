@@ -44,7 +44,7 @@ const scrollRight = keyframes`
 `;
 
 export const RecList = styled.ul`
-  @media screen and (max-width: 668px) {
+  @media screen and (max-width: 768px) {
     overflow: auto;
     white-space: nowrap;
   }
@@ -148,6 +148,9 @@ export const NavButtonLeft = styled(NavButton)`
 `;
 
 export const ItemsBox = styled.div`
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
   width: 1380px;
   max-width: 100%;
 `;
