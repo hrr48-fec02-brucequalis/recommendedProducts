@@ -16,7 +16,7 @@ const List = ({listItems, handleClick, selectedDot, numVisible, numDots}) => {
       {listItems.map((item, i) =>
         <ListItem item={item} key={item.id} visible={i >= minIVisible && i <= maxIVisible}/> )}
 
-    {onRightmostPage ? '' : <NavButtonRight key={'navButtonRight'} onClick={() => handleClick(1)}>&#5171;</NavButtonRight>}
+    {onRightmostPage || numDots === 0 ? '' : <NavButtonRight key={'navButtonRight'} onClick={() => handleClick(1)}>&#5171;</NavButtonRight>}
   </RecList>
   );
 };

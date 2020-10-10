@@ -54,13 +54,13 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   }, []);
 
   const handleResize = () => {
-    let width = window.innerWidth * 4/5; //issue with inner width: adds 1/4 (e.g. 1600-2000, 800-1000, 150-187)
-    let widthTriggers = [null, 1209, 1010, 925, 668];
+    let width = window.innerWidth; //issue with inner width: adds 1/4 (e.g. 1600-2000, 800-1000, 150-187)
+    let widthTriggers = [null, 1209, 1010, 925, 669];
     let correspondingVisible = [7, 6, 5, 4, numItems];
     let targetVisible;
     if (width < widthTriggers[4]) {
-      console.log('we\'re at the smallest level--work on a scroll bar');
       targetVisible = correspondingVisible[4];
+      // scroll bar also appears here--see Styles.jsx for that detail
     } else if (width < widthTriggers[3]) {
       targetVisible = correspondingVisible[3];
     } else if (width < widthTriggers[2]) {
