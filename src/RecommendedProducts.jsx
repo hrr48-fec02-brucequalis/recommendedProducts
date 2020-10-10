@@ -33,6 +33,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   const [allItems, setAllItems] = useState([]);
   const [numVisible, setNumVisible] = useState(itemsShown || 7);
   const [numDots, setNumDots] = useState(Math.ceil(numItems / numVisible));
+  const [onMobile, setOnMobile] = useState(/iPhone/.test(navigator.userAgent));
 
   let dotsArray = [];
   while (dotsArray.length < numDots) {
@@ -58,7 +59,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
     let widthTriggers = [null, 1209, 1010, 925, 669];
     let correspondingVisible = [7, 6, 5, 4, numItems];
     let targetVisible;
-    if (width < widthTriggers[4]) {
+    if (width < widthTriggers[4] || onMobile) {
       targetVisible = correspondingVisible[4];
       // scroll bar also appears here--see Styles.jsx for that detail
     } else if (width < widthTriggers[3]) {
@@ -91,6 +92,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
         <div id="recommended-items">
           <List
             listItems={allItems}
+            onMobile={onMobile}
             numVisible={numVisible}
             selectedDot={selectedDot}
             numDots={numDots}

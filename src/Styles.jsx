@@ -44,7 +44,7 @@ const scrollRight = keyframes`
 `;
 
 export const RecList = styled.ul`
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 668px) {
     overflow: auto;
     white-space: nowrap;
   }
@@ -57,6 +57,13 @@ export const RecList = styled.ul`
     visibility: visible;
     opacity: 1;
     transition: opacity 0s linear;
+  }
+`;
+
+export const RecListMobile = styled(RecList)`
+  @media screen {
+    overflow: auto;
+    white-space: nowrap;
   }
 `;
 
