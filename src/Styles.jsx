@@ -147,6 +147,10 @@ const NavButton = styled.button`
 export const NavButtonRight = styled(NavButton)`
   justify-self: flex-end;
   margin-left: -40px;
+  @media screen and (max-width: 1380px) {
+    position: fixed;
+    right: 0;
+  }
 `;
 
 export const NavButtonLeft = styled(NavButton)`
