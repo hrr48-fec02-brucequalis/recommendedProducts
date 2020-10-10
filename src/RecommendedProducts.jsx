@@ -57,7 +57,7 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   const handleResize = () => {
     let width = window.innerWidth; //issue with inner width: adds 1/4 (e.g. 1600-2000, 800-1000, 150-187)
     let widthTriggers = [null, 1209, 1010, 925, 669];
-    let correspondingVisible = [7, 6, 5, 4, numItems];
+    let correspondingVisible = [7, 6, 5, 5, numItems];
     let targetVisible;
     if (width < widthTriggers[4] || onMobile) {
       targetVisible = correspondingVisible[4];

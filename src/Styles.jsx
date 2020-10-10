@@ -78,6 +78,10 @@ export const RecListScrollingRight = styled(RecList)`
 export const RecListItem = styled.li`
   display: inline-block;
   color: grey;
+  @media screen and (max-width: 924px) and (min-width: 669px) {
+    width: 20%;
+    height: 20%;
+  }
   :hover p {
     color: black;
     text-decoration: none;
@@ -85,9 +89,20 @@ export const RecListItem = styled.li`
 `;
 
 export const RecItemImage = styled.img`
-  width: 185px;
-  height: 185px;
   margin: 6px;
+  @media screen and (min-width: 925px) {
+    width: 185px;
+    height: auto;
+  }
+  @media screen and (max-width: 924px) and (min-width: 669px) {
+    width: 90%;
+    height: auto;
+    min-width: 125px;
+  }
+  @media screen and (max-width: 668px) {
+    width: 185px;
+    height: auto;
+  }
 `;
 
 export const NavDotContainer = styled.div`
