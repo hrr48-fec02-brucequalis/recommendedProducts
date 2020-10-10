@@ -44,6 +44,11 @@ const scrollRight = keyframes`
 `;
 
 export const RecList = styled.ul`
+  @media screen and (max-width: 668px) {
+    overflow: auto;
+    white-space: nowrap;
+  }
+  padding: 0px;
   list-style-type: none;
   display: flex;
   flex-direction: horizontal;
@@ -143,5 +148,6 @@ export const NavButtonLeft = styled(NavButton)`
 `;
 
 export const ItemsBox = styled.div`
-  width: 1450px;
+  width: 1380px;
+  max-width: 100%;
 `;
