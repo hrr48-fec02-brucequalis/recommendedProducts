@@ -15,6 +15,18 @@ const RecommendedProducts = ({totalItems, itemsShown, heading}) => {
   // parse information from window pathname
   let productId = window.location.pathname.slice(1) || 1;
 
+  /*
+  Responsive triggers (FOR RECOMMENDED--SIMILAR SLIGHTLY DIFFERENT):
+  Also note: on any window change, selected dot goes back to 0. That makes things a little easier.
+      (looks like similar items follows similar pattern--however, max dots is 3, with 5 items across)
+  use innerWidth
+  <1209: 5 dots, 6 items each, 24 total still
+  <1010: 6 dots, 5 items each:: sliding moves furthest right element to furthest left (duplicates between pages)
+  <925: scale down components
+  === 668: images the smallest they will ever be. 135px width & height
+  <668: change dots to slider. images go back to 185px width & height
+  */
+
   const [selectedDot, setSelectedDot] = useState(0);
   const [numItems, setNumItems] = useState(totalItems || 24);
   const [allItems, setAllItems] = useState([]);
