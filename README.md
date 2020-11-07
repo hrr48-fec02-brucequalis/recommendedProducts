@@ -1,13 +1,13 @@
-# recommendedProducts
-Main repository for recommended products module for FEC project
+# Recommended Products
+Recommended Products module for TarJay e-commerce app
 
-On load, this repository opens some sample data for recommended products for a Target web app. When running through the included Express server and properly seeded with data, it will query a MongoDB database (created through the Mongoose ODM) for specific product departments.
+On load, this repository opens some sample data for recommended products for the TarJay web app. When running through the included Express server and properly seeded with data, it will query a MongoDB database (created through the Mongoose ODM) for specific product departments.
 
 To properly start up this service, run the following commands from the root directory:
 - `npm install`
 - `npm run seed`
 
-The following commands should be run from their own terminals to render the app:
+These commands should be run from their own terminals to render the app and spin up the service:
 - `npm run build`
 - `npm start`
 
